@@ -16,8 +16,7 @@
         <h2>
             Recovery Room
         </h2>
-        <form:form modelAttribute="recoveryRoom"
-                   class="form-horizontal">
+        <form:form modelAttribute="recoveryRoom" class="form-horizontal">
             <input type="hidden" name="id" value="${recoveryRoom.id}"/>
             <div class="form-group has-feedback">
                 <petclinic:inputField label="Room name" name="name"/>
@@ -29,9 +28,23 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-default" type="submit">Update Room</button>
+                    <c:choose>
+                        <c:when test="${recoveryRoom['new']}">
+                            <button class="btn btn-default" type="submit">
+                                Add Recovery Room
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="btn btn-default" type="submit">
+                                Update Recovery Room
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </form:form>
+        <c:if test="${!recoveryRoom['new']}">
+        </c:if>
     </jsp:body>
 </petclinic:layout>
+
